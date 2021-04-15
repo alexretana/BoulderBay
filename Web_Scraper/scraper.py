@@ -1,9 +1,11 @@
 from bs4 import BeautifulSoup as bs
 import requests
 
-# Opens gyms.html code to parse
-with open('gyms.html') as gyms_file:
-    soup = bs(gyms_file,'lxml')
+# get source html file with http request
+req = requests.get('https://www.mountainproject.com/gyms/florida').text
+
+# takes request and parses with lxml
+soup = bs(req,'lxml')
 
 # Returns a list of scraped gyms within div climbing_gyms
 for gym in soup.find_all(class_='text-truncate'):
