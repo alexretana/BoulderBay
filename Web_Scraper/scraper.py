@@ -20,4 +20,5 @@ for gym in soup.find_all(class_='text-truncate'):
     # Rating 
     f.write("⭐⭐⭐⭐⭐")
     # Close file 
+    # test commit
     f.close()
