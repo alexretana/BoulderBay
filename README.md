@@ -14,4 +14,13 @@ On our first "sprint" we want to have a web page which is interacted with very s
     - Give a Rating if applicable
 - A static backend database that will be built using multiple data sources from online, and will be set to update weekly
 
+
+
 More ideas will be added to a product backlog once significant progress is made on this product.
+
+Potential Data Sources to Look into will be:
+- [The Crag API](https://www.thecrag.com/api-wadl.xml)
+- [Rock Climbing API -  Geocoder and Recommender](https://openbeta.io/api/)
+- [Scrape from 'https://www.mountainproject.com/'](https://www.mountainproject.com/)
+- [Google My Business API](https://developers.google.com/my-business/content/review-data)
+- [Yelp API](https://www.yelp.com/developers)
