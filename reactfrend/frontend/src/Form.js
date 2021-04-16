@@ -19,9 +19,13 @@ function UserForm({results}) {
                 <p class="m-3">Results: {results.length}</p>
                     
             </form>
+            <div class="row w-100 mx-auto">
             {results.map( result => {
-                        return <Result result={result}/>
+                        return (
+                            <Result result={result}/>
+                        )
                     })}
+            </div>
             </div>
         </>
     )
