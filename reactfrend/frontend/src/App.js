@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import UserForm from './Form'
+
 
 function App() {
+  const [results, setresults] = useState([
+    
+    {
+      title:"result1",
+      rating:"⭐⭐⭐⭐",
+      address:"5270 N US HWY 1, Palm Shores, FL 32940 "
+    },
+    {
+      title:"result2",
+      rating:"⭐⭐⭐⭐",
+      address:"5270 N US HWY 1, Palm Shores, FL 32940 "
+    },
+    {
+      title:"result1",
+      rating:"⭐⭐⭐⭐",
+      address:"5270 N US HWY 1, Palm Shores, FL 32940 "
+    },
+    {
+      title:"result2",
+      rating:"⭐⭐⭐⭐",
+      address:"5270 N US HWY 1, Palm Shores, FL 32940 "
+    }
+  
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <UserForm results={results}/>
+      );
 }
 
 export default App;
