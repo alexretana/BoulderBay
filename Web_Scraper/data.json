@@ -232,5 +232,387 @@
             "www.stpeteymca.org",
             " 3200 First Ave. South, St. Petersburg, FL "
         ]
+    },
+    "A.I.R. - Albany& 8217 s Indoor Rock Gym": {
+        "img_list": [],
+        "gym_info": [
+            "www.airrockgym.com",
+            " 4C Vatrano Road, Albany, New York 12205 "
+        ]
+    },
+    "AIR Climbing Facility - Adventures in\u2026": {
+        "img_list": [],
+        "gym_info": [
+            "www.potsdam.edu",
+            " SUNY Potsdam, 44 Pierrepont Ave, Potsdam, New York 13676 "
+        ]
+    },
+    "Angert Family Climbing Wall": {
+        "img_list": [],
+        "gym_info": [
+            "athletics.colgate.edu",
+            " Huntington Gym, Colgate University, 13 Oak Drive,Hamilton, New York 13346 "
+        ]
+    },
+    "Aviator Sports and Recreation": {
+        "img_list": [],
+        "gym_info": [
+            "www.aviatorsports.com",
+            " Floyd Bennett Field, Hangar 5, Brooklyn, New York 11234 "
+        ]
+    },
+    "B.C's Climbing": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/107549468_smallMed_1494378321.jpg",
+            "https://cdn2.apstatic.com/photos/climb/107549472_smallMed_1494378323.jpg",
+            "https://cdn2.apstatic.com/photos/climb/107549474_smallMed_1494378323.jpg"
+        ],
+        "gym_info": [
+            "bcclimbinggym.com",
+            " 234 Main St, Eckerd Plaza, New Paltz, New York 12561 "
+        ]
+    },
+    "Brooklyn Boulders": {
+        "img_list": [],
+        "gym_info": [
+            "brooklynboulders.com",
+            " 575 Degraw Street, Brooklyn, New York 11217 "
+        ]
+    },
+    "Brooklyn Boulders Queensbridge": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/117092102_smallMed_1560094334.jpg",
+            "https://cdn2.apstatic.com/photos/climb/117092109_smallMed_1560094383.jpg",
+            "https://cdn2.apstatic.com/photos/climb/117092111_smallMed_1560094420.jpg"
+        ],
+        "gym_info": [
+            "brooklynboulders.com",
+            " 23-10 41st Ave  Long Island City, NY 11101 "
+        ]
+    },
+    "Cayuga Climbs": {
+        "img_list": [],
+        "gym_info": [
+            "www.cayugaclimbs.com",
+            " 53 Hall Rd Suite A, Ithaca, NY 14850 "
+        ]
+    },
+    "Central Rock Gym": {
+        "img_list": [],
+        "gym_info": [
+            "centralrockgym.com",
+            " 21 West End Ave.  New York, NY 10069 "
+        ]
+    },
+    "Central Rock Gym (Buffalo)": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/117293349_smallMed_1562028031.jpg",
+            "https://cdn2.apstatic.com/photos/climb/118226342_smallMed_1578456571.jpg"
+        ],
+        "gym_info": [
+            "centralrockgym.com",
+            " 55 Chicago St Buffalo, NY 14204 "
+        ]
+    },
+    "Central Rock Gym (Rochester)": {
+        "img_list": [],
+        "gym_info": [
+            "centralrockgym.com",
+            " 725 Averill Ave Rochester, NY 14607 "
+        ]
+    },
+    "Central Rock Gym Syracuse": {
+        "img_list": [],
+        "gym_info": [
+            "centralrockgym.com",
+            " 600 N Franklin St, Syracuse, NY 13204 "
+        ]
+    },
+    "City Climbers Club (AKA 59th Street Gym)": {
+        "img_list": [],
+        "gym_info": [
+            "www.cityclimbersclub.com",
+            " 533 West 59th St. (between 10th and 11th), New York, New York 10019 "
+        ]
+    },
+    "Clark Sports Center": {
+        "img_list": [],
+        "gym_info": [
+            "www.clarksportscenter.com",
+            " 98 Susquehanna Ave, Cooperstown NewYork 13326 "
+        ]
+    },
+    "Climbing Cave": {
+        "img_list": [],
+        "gym_info": [
+            " 28 Glen Drive, Queensbury, New York "
+        ]
+    },
+    "Cornerstone Climbing": {
+        "img_list": [],
+        "gym_info": [
+            "www.cornerstoneclimbing.com",
+            " 165 Highrock Ave, Saratoga Springs, New York 12866 "
+        ]
+    },
+    "Crunch": {
+        "img_list": [],
+        "gym_info": [
+            "www.crunch.com",
+            " E. 59th Street, 1109 2nd Avenue, New York, New York 10022 "
+        ]
+    },
+    "GP81": {
+        "img_list": [],
+        "gym_info": [
+            "www.gp-81.com",
+            " 81 Quay St., Brooklyn NY 11222 "
+        ]
+    },
+    "Island Rock Gym": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/119374265_smallMed_1597280210.jpg"
+        ],
+        "gym_info": [
+            "www.islandrock.net",
+            " 60 Skyline Blvd, Plainview, New York 11803 "
+        ]
+    },
+    "JCC Family Sports and Fitness": {
+        "img_list": [],
+        "gym_info": [
+            "www.jccsyr.org",
+            " 5655 Thompson Road, DeWitt, New York 13214 "
+        ]
+    },
+    "Lindseth Climbing Wall": {
+        "img_list": [],
+        "gym_info": [
+            "www.coe.cornell.edu",
+            " Alberding Field House, Cornell University P.O. 729, Ithaca, New York 14851 "
+        ]
+    },
+    "Manhattan Plaza Health Club Climbing\u2026": {
+        "img_list": [],
+        "gym_info": [
+            "www.mphc.com",
+            " 482 West 43rd St. (btw 9th & 10th Ave), New York, New York 10036 "
+        ]
+    },
+    "MetroRock Bushwick": {
+        "img_list": [],
+        "gym_info": [
+            "www.metrorock.com",
+            " 321 Starr St., Brooklyn NY 11237 "
+        ]
+    },
+    "Munro Family Climbing Wall": {
+        "img_list": [],
+        "gym_info": [
+            "www.stlawu.edu",
+            " St. Lawrence University, Canton, New York 13617 "
+        ]
+    },
+    "New York Health and Raquet Club": {
+        "img_list": [],
+        "gym_info": [
+            "www.nyhrc.com",
+            " 62 Cooper Square, New York, New York 10003 "
+        ]
+    },
+    "Niagara Climbing Center": {
+        "img_list": [],
+        "gym_info": [
+            "www.niagaraclimbingcenter.com",
+            " 1333 Strad Avenue, North Tonawanda, New York 14120 "
+        ]
+    },
+    "Powerplay Recreational Center": {
+        "img_list": [],
+        "gym_info": [
+            " 432 Third Avenue, Brooklyn, New York 11215 "
+        ]
+    },
+    "Rebock Sports Club": {
+        "img_list": [],
+        "gym_info": [
+            " 68th Street and Columbus, New York, New York "
+        ]
+    },
+    "Red Barn Climbing Gym": {
+        "img_list": [],
+        "gym_info": [
+            "www.rit.edu",
+            " RIT, 113 Lomb Memorial Drive, Rochester, NY 14623 "
+        ]
+    },
+    "Rock Ventures": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/117076671_smallMed_1559765268.jpg"
+        ],
+        "gym_info": [
+            "rockventures.net",
+            " 1044 University Ave, Rochester, New York 14607 "
+        ]
+    },
+    "RockSport": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/117821052_smallMed_1569977189.jpg"
+        ],
+        "gym_info": [
+            "www.rocksportny.com",
+            " 54 Carey Rd. Queensbury, NY 12804 "
+        ]
+    },
+    "Steep Rock Bouldering": {
+        "img_list": [],
+        "gym_info": [
+            "www.srbnyc.com",
+            " 1506 Lexington Ave, New York NY 10029 "
+        ]
+    },
+    "Steep Rock West": {
+        "img_list": [],
+        "gym_info": [
+            "www.srbnyc.com",
+            " 3225 Broadway, New York, NY 10027 "
+        ]
+    },
+    "Table Rock Bouldering": {
+        "img_list": [],
+        "gym_info": [
+            "www.tablerockbouldering.com",
+            " 6 Market St. Unit B9 Oneonta, NY 13820 "
+        ]
+    },
+    "The Cliffs at DUMBO": {
+        "img_list": [],
+        "gym_info": [
+            "www.facebook.com",
+            " 99 Plymouth St. Brooklyn, New York 11201 "
+        ]
+    },
+    "The Cliffs at Harlem": {
+        "img_list": [],
+        "gym_info": [
+            "harlem.thecliffsclimbing.com",
+            " 256 W 125th St, New York, NY 10027 "
+        ]
+    },
+    "The Cliffs at Valhalla": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/117692355_smallMed_1567548266.jpg",
+            "https://cdn2.apstatic.com/photos/climb/117692357_smallMed_1567548297.jpg",
+            "https://cdn2.apstatic.com/photos/climb/117692361_smallMed_1567548318.jpg",
+            "https://cdn2.apstatic.com/photos/climb/117692364_smallMed_1567548336.jpg"
+        ],
+        "gym_info": [
+            "thecliffsclimbing.com",
+            " 1 Commerce Park, Valhalla, New York 10595 "
+        ]
+    },
+    "The Cliffs Long Island City": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/117922606_smallMed_1571630492.jpg"
+        ],
+        "gym_info": [
+            "lic.thecliffsclimbing.com",
+            " 11-11 44th Dr., Queens, NY 11101 "
+        ]
+    },
+    "The Court Club": {
+        "img_list": [],
+        "gym_info": [
+            "www.thecourtclub.com",
+            " 444 Sand Creek Rd, Albany, New York 12205 "
+        ]
+    },
+    "The Crux--Champlain Valley Climbing C\u2026": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/112062545_smallMed_1494390863.jpg",
+            "https://cdn2.apstatic.com/photos/climb/112062564_smallMed_1494390864.jpg",
+            "https://cdn2.apstatic.com/photos/climb/112062571_smallMed_1494390865.jpg",
+            "https://cdn2.apstatic.com/photos/climb/112062590_smallMed_1494390866.jpg",
+            "https://cdn2.apstatic.com/photos/climb/112062596_smallMed_1494390867.jpg"
+        ],
+        "gym_info": [
+            "www.pmoec.org",
+            " 56 Rogers Lane, Willsboro, New York 12996 "
+        ]
+    },
+    "The Edge Halfmoon": {
+        "img_list": [
+            "https://cdn2.apstatic.com/photos/climb/107396128_smallMed_1494378263.jpg",
+            "https://cdn2.apstatic.com/photos/climb/107396130_smallMed_1494378263.jpg",
+            "https://cdn2.apstatic.com/photos/climb/107424597_smallMed_1494378275.jpg",
+            "https://cdn2.apstatic.com/photos/climb/107424598_smallMed_1494378275.jpg"
+        ],
+        "gym_info": [
+            "theedgehalfmoon.com",
+            " 1544 Route 9, Clifton Park, NY 12065 "
+        ]
+    },
+    "The Field House Rock Wall": {
+        "img_list": [],
+        "gym_info": [
+            "www.chelseapiers.com",
+            " Chelsea Piers, 23rd Street and the Hudson River, New York, New York 10011 "
+        ]
+    },
+    "The Gravity Vault - Melville": {
+        "img_list": [],
+        "gym_info": [
+            "www.gravityvault.com",
+            " 40 Melville Park Rd., Melville, NY 11747 "
+        ]
+    },
+    "The Gravity Vault - Poughkeepsie": {
+        "img_list": [],
+        "gym_info": [
+            "www.gravityvault.com",
+            " 6 Neptune Rd., Poughkeepsie, NY 12601 "
+        ]
+    },
+    "The Ledge": {
+        "img_list": [],
+        "gym_info": [
+            "pacifichealthclub.com",
+            " 604 Old Liverpool Road, Liverpool, NY 13088 "
+        ]
+    },
+    "The Rock Club": {
+        "img_list": [],
+        "gym_info": [
+            "climbrockclub.com",
+            " 130 Rhodes St., New Rochelle, New York 10801 "
+        ]
+    },
+    "The Rock Health and Fitness": {
+        "img_list": [],
+        "gym_info": [
+            "www.therockhealthandfitness.com",
+            " 22-15 31st, Astoria, New York 11105 "
+        ]
+    },
+    "The Sports Center Climbing Wall": {
+        "img_list": [],
+        "gym_info": [
+            "www.chelseapiers.com",
+            " Chelsea Piers-Pier 60, New York, New York 10011 "
+        ]
+    },
+    "The Sports Club/LA": {
+        "img_list": [],
+        "gym_info": [
+            "www.mpsportsclub.com",
+            " 330 E. 61st St. (Upper East Side), New York, New York 10021 "
+        ]
+    },
+    "The Wall at Palisades": {
+        "img_list": [],
+        "gym_info": [
+            "www.climbpalisades.com",
+            " 3565 Palisades Center Dr, West Nyack, NY 10994 "
+        ]
     }
 }

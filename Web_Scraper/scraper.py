@@ -1,9 +1,10 @@
 from bs4 import BeautifulSoup as bs
 import requests
 import json
+from time import sleep
 
 
-
+# The list of states to scrap mountain project for
 listOfStates = [
         'Alabama',
         'Alaska',
@@ -59,7 +60,7 @@ listOfStates = [
     
         
 
-
+# func scrapes info and images from RC Gyms per State
 def scrapeStateFromMoutainProject(state: str):
     # get source html file with http request
     state_url = 'https://www.mountainproject.com/gyms/' + state
@@ -107,10 +108,19 @@ def scrapeStateFromMoutainProject(state: str):
 
 
 if __name__ == "__main__":
-    # gyms_in_florida = scrapeStateFromMoutainProject('florida' )
 
-    # with open('data.json', 'w') as outfile:
-    #     json.dump(gyms_in_florida, outfile,indent=4)
+    #initiallizes dict to dump data into
+    gym_data = {}
+    #test list override
+    listOfStates = ['Florida', 'New York']
+    for state in listOfStates:
+        state = state.replace(" ", "-")
+        scrapped_gym_data = scrapeStateFromMoutainProject(state)
 
-    # for each link follow and scrape photo and count rating star images
-    print(len(listOfStates))
+        gym_data.update(scrapped_gym_data)
+        sleep(10)
+
+
+
+    with open('data.json', 'w') as outfile:
+        json.dump(gym_data, outfile,indent=4)
