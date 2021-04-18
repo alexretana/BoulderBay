@@ -112,15 +112,20 @@ if __name__ == "__main__":
     #initiallizes dict to dump data into
     gym_data = {}
     #test list override
-    listOfStates = ['Florida', 'New York']
+    # listOfStates = ['Florida', 'New York']
+
+    #loop through each state to scrap
     for state in listOfStates:
         state = state.replace(" ", "-")
         scrapped_gym_data = scrapeStateFromMoutainProject(state)
 
+        #append to full dictionary list
         gym_data.update(scrapped_gym_data)
+
+        #wait ten second before next state
         sleep(10)
 
 
-
+# write to json
     with open('data.json', 'w') as outfile:
         json.dump(gym_data, outfile,indent=4)
