@@ -31,12 +31,11 @@ for gym in soup.find_all(class_='text-truncate'):
         # getting img data src based on class smallMed
         if 'smallMed' in img['data-original']:
             #storing img links in gym_list
-            gym_list.append((img)['data-original'])
+            gym_list.append(img['data-original'])
             #print  ((img)['data-original'])
 
     # takes imgs and add to gym_data
-    new_gym_list = [x for x in gym_list]
-    gym_data[gym_list_name]['img_list'] = new_gym_list
+    gym_data[gym_list_name]['img_list'] = gym_list
 
     # for each gym page search for gym-info class
     for gym_info in gym_page.find_all(class_= "gym-info"):
