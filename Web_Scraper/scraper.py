@@ -29,7 +29,7 @@ for gym in soup.find_all(class_='text-truncate'):
     # for each gym page search for img tag
     for img in gym_page.find_all(class_ ='lazy'):
         # getting img data src based on class smallMed
-        if 'smallMed' in (img)['data-original']:
+        if 'smallMed' in img['data-original']:
             #storing img links in gym_list
             gym_list.append((img)['data-original'])
             #print  ((img)['data-original'])
