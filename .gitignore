@@ -3,3 +3,4 @@ VSWorkspaceState.json
 slnx.sqlite
 .suo
 */.ipynb_checkpoints/
+*.vscode
