@@ -26,6 +26,8 @@ def scrapeStateFromMoutainProject(state):
         link = gym.find('a')['href']
         page_r = requests.get(link).text
 
+            # Using encode('utf-8') to solve \u2026 problem
+
         # takes request and parse with lXML
         gym_list_name = gym.find('a').text
         gym_data[gym_list_name] = {}
@@ -69,6 +71,7 @@ if __name__ == "__main__":
         gym_data.update(scrapped_gym_data)
 
         # wait ten second before next state
+        print(" Waiting 10 seconds ...")
         sleep(10)
 
 
