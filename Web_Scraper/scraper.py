@@ -30,10 +30,11 @@ def scrapeStateFromMoutainProject(state):
 
         # takes request and parse with lXML
         gym_list_name = gym.find('a').text
+        # print  (gym_list_name.decode('utf-8').replace('\u2026'," ")
         gym_data[gym_list_name] = {}
         # adding location name to gym data object
         gym_data[gym_list_name]['locName'] = gym_list_name
-        print("\n Getting info on ... " + gym_list_name + "\n").encode('utf-8')
+        #print(("getting info on %s") %(gym_list_name))
         gym_list = []
         gym_page = bs(page_r, 'lxml')
 
@@ -51,7 +52,7 @@ def scrapeStateFromMoutainProject(state):
         for gym_info in gym_page.find_all(class_="gym-info"):
 
             gym_data[gym_list_name]['gym_info'] = [
-                a.text.encode('utf-8') for a in gym_info.find_all('a')]
+                a.text for a in gym_info.find_all('a')]
 
     return gym_data
 
@@ -71,7 +72,7 @@ if __name__ == "__main__":
         gym_data.update(scrapped_gym_data)
 
         # wait ten second before next state
-        print(" Waiting 10 seconds ...")
+        print("\n Waiting 10 seconds ... \n")
         sleep(10)
 
 
