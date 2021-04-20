@@ -7,7 +7,7 @@ from time import sleep
 
 
 # func scrapes info and images from RC Gyms per State
-def scrapeStateFromMoutainProject(state : str):
+def scrapeStateFromMoutainProject(state):
     # get source html file with http request
     state_url = 'https://www.mountainproject.com/gyms/' + state
     req = requests.get(state_url).text
@@ -29,7 +29,9 @@ def scrapeStateFromMoutainProject(state : str):
         # takes request and parse with lXML
         gym_list_name = gym.find('a').text
         gym_data[gym_list_name] = {}
-        print("\n Getting info on ... " + gym_list_name + "\n")
+        # adding location name to gym data object
+        gym_data[gym_list_name]['locName'] = gym_list_name
+        print("\n Getting info on ... " + gym_list_name + "\n").encode('utf-8')
         gym_list = []
         gym_page = bs(page_r, 'lxml')
 
@@ -43,31 +45,30 @@ def scrapeStateFromMoutainProject(state : str):
 
         # takes imgs and add to gym_data
         gym_data[gym_list_name]['img_list'] = gym_list
-
         # for each gym page search for gym-info class
         for gym_info in gym_page.find_all(class_="gym-info"):
 
             gym_data[gym_list_name]['gym_info'] = [
-                str(a.text) for a in gym_info.find_all('a')]
+                a.text.encode('utf-8') for a in gym_info.find_all('a')]
 
     return gym_data
 
 
 if __name__ == "__main__":
-
-    #initiallizes dict to dump data into
+    
+    # initiallizes dict to dump data into
     gym_data = {}
     #test list override
-    #print(listOfStates)
-    #loop through each state to scrap
+    
+    # loop through each state to scrap
     for state in listOfStates:
         state = state.replace(" ", "-")
         scrapped_gym_data = scrapeStateFromMoutainProject(state)
-
-        #append to full dictionary list
+        # print (scrapped_gym_data)
+        # append to full dictionary list
         gym_data.update(scrapped_gym_data)
 
-        #wait ten second before next state
+        # wait ten second before next state
         sleep(10)
 
 
