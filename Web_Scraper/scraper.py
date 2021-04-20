@@ -7,7 +7,7 @@ from time import sleep
 
 
 # func scrapes info and images from RC Gyms per State
-def scrapeStateFromMoutainProject(state : int):
+def scrapeStateFromMoutainProject(state : str):
     # get source html file with http request
     state_url = 'https://www.mountainproject.com/gyms/' + state
     req = requests.get(state_url).text
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     #initiallizes dict to dump data into
     gym_data = {}
     #test list override
-
+    #print(listOfStates)
     #loop through each state to scrap
     for state in listOfStates:
         state = state.replace(" ", "-")
