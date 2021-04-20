@@ -1,64 +1,10 @@
 from bs4 import BeautifulSoup as bs
 import requests
+from config import listOfStates
 import json
 from time import sleep
 
 
-# The list of states to scrap mountain project for
-listOfStates = [
-        'Alabama',
-        'Alaska',
-        'Arizona',
-        'Arkansas',
-        'California',
-        'Colorado',
-        'Connecticut',
-        'Delaware',
-        'Florida',
-        'Georgia',
-        'Hawaii',
-        'Idaho',
-        'Illinois',
-        'Indiana',
-        'Iowa',
-        'Kansas',
-        'Kentucy',
-        'Louisiana',
-        'Maine',
-        'Maryland',
-        'Massachusetts',
-        'Michigan',
-        'Minnesota',
-        'Mississippi',
-        'Missouri',
-        'Montana',
-        'Nebraska',
-        'Nevada',
-        'New Hampshire',
-        'New Jersey',
-        'New Mexico',
-        'New York',
-        'North Caroline',
-        'North Dakota',
-        'Ohio',
-        'Oklahoma',
-        'Orgegon',
-        'Pennsylvania',
-        'Rhode Island',
-        'South Carolina',
-        'South Dakota',
-        'Tennessee',
-        'Texas',
-        'Utah',
-        'Vermont',
-        'Virginia',
-        'Washington',
-        'West Virginia',
-        'Wisconsin',
-        'Wyoming'
-]
-    
-        
 
 # func scrapes info and images from RC Gyms per State
 def scrapeStateFromMoutainProject(state : int):
@@ -112,7 +58,6 @@ if __name__ == "__main__":
     #initiallizes dict to dump data into
     gym_data = {}
     #test list override
-    # listOfStates = ['Florida', 'New York']
 
     #loop through each state to scrap
     for state in listOfStates:
