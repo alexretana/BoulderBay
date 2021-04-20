@@ -61,7 +61,7 @@ listOfStates = [
         
 
 # func scrapes info and images from RC Gyms per State
-def scrapeStateFromMoutainProject(state: str):
+def scrapeStateFromMoutainProject(state : int):
     # get source html file with http request
     state_url = 'https://www.mountainproject.com/gyms/' + state
     req = requests.get(state_url).text
