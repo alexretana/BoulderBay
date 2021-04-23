@@ -1,39 +1,16 @@
-/* Only added a·luh·ba·muh because Github's cap*/
 {
-    "Campus Recreation Center": {
-        "locName": "Campus Recreation Center",
+    "Auburn University Recreation and Well\u2026": {
+        "locName": "Auburn University Recreation and Well\u2026",
+        "rating": " 4.7",
         "img_list": [],
         "gym_info": [
-            "studentaffairs.uab.edu",
-            " University of Alabama at Birmingham, 1501 University Blvd, Birmingham Alabama 35294 "
-        ]
-    },
-    "University of South Alabama - Student\u2026": {
-        "locName": "University of South Alabama - Student\u2026",
-        "img_list": [],
-        "gym_info": [
-            "www.southalabama.edu",
-            " 307 N University Blvd, Mobile, Alabama 36688-0002 "
-        ]
-    },
-    "Fortenberry-Colton Fitness Center": {
-        "locName": "Fortenberry-Colton Fitness Center",
-        "img_list": [],
-        "gym_info": [
-            "www.ftruckermwr.com",
-            " Bldg. 5900 on the corner of Skychief Street and 5th Avenue, Fort Rucker,Alabama 36362 "
-        ]
-    },
-    "High Point Climbing - Birmingham": {
-        "locName": "High Point Climbing - Birmingham",
-        "img_list": [],
-        "gym_info": [
-            "highpointclimbing.com",
-            " 4766 US-280, Birmingham, AL 35242 "
+            "",
+            " 601 Heisman Dr, Auburn, AL 36849 "
         ]
     },
     "Birmingham Boulders": {
         "locName": "Birmingham Boulders",
+        "rating": " 4.9",
         "img_list": [
             "https://cdn2.apstatic.com/photos/climb/119942765_smallMed_1605889340.jpg",
             "https://cdn2.apstatic.com/photos/climb/120299193_smallMed_1613491060.jpg"
@@ -43,24 +20,63 @@
             " 136 INDUSTRIAL DRIVE BIRMINGHAM, AL 35211 "
         ]
     },
-    "Gadrock": {
-        "locName": "Gadrock",
+    "Campus Recreation Center": {
+        "locName": "Campus Recreation Center",
+        "rating": " 4.0",
         "img_list": [],
         "gym_info": [
-            "www.climbgadrock.com",
-            " 1403 Rainbow Drive Gadsden AL United States 35901 "
+            "studentaffairs.uab.edu",
+            " University of Alabama at Birmingham, 1501 University Blvd, Birmingham Alabama 35294 "
+        ]
+    },
+    "Faucett Brothers Activity Center": {
+        "locName": "Faucett Brothers Activity Center",
+        "rating": " 4.6",
+        "img_list": [],
+        "gym_info": [
+            "www.tcpara.org",
+            " 13040 Eugenia Faucett Drive Northport, AL 35473 "
         ]
     },
     "First Avenue Rocks": {
         "locName": "First Avenue Rocks",
+        "rating": " 4.8",
         "img_list": [],
         "gym_info": [
             "firstaverocks.com",
             " 2417 1st Avenue South, Birmingham, Alabama 35233 "
         ]
     },
+    "Fortenberry-Colton Fitness Center": {
+        "locName": "Fortenberry-Colton Fitness Center",
+        "rating": " 4.5",
+        "img_list": [],
+        "gym_info": [
+            "www.ftruckermwr.com",
+            " Bldg. 5900 on the corner of Skychief Street and 5th Avenue, Fort Rucker,Alabama 36362 "
+        ]
+    },
+    "Gadrock": {
+        "locName": "Gadrock",
+        "rating": " 4.9",
+        "img_list": [],
+        "gym_info": [
+            "www.climbgadrock.com",
+            " 1403 Rainbow Drive Gadsden AL United States 35901 "
+        ]
+    },
+    "High Point Climbing - Birmingham": {
+        "locName": "High Point Climbing - Birmingham",
+        "rating": " 4.7",
+        "img_list": [],
+        "gym_info": [
+            "highpointclimbing.com",
+            " 4766 US-280, Birmingham, AL 35242 "
+        ]
+    },
     "High Point Climbing - Huntsville": {
         "locName": "High Point Climbing - Huntsville",
+        "rating": " 4.7",
         "img_list": [
             "https://cdn2.apstatic.com/photos/climb/118309187_smallMed_1580700556.jpg",
             "https://cdn2.apstatic.com/photos/climb/118309216_smallMed_1580700731.jpg"
@@ -70,32 +86,27 @@
             " 1020 Nunnahsae Park Dr. NW (4.43 mi) Huntsville, Alabama 35806 "
         ]
     },
-    "Faucett Brothers Activity Center": {
-        "locName": "Faucett Brothers Activity Center",
-        "img_list": [],
-        "gym_info": [
-            "www.tcpara.org",
-            " 13040 Eugenia Faucett Drive Northport, AL 35473 "
-        ]
-    },
-    "Auburn University Recreation and Well\u2026": {
-        "locName": "Auburn University Recreation and Well\u2026",
-        "img_list": [],
-        "gym_info": [
-            "",
-            " 601 Heisman Dr, Auburn, AL 36849 "
-        ]
-    },
     "University of Alabama": {
         "locName": "University of Alabama",
+        "rating": "Admi",
         "img_list": [],
         "gym_info": [
             "urec.ua.edu",
             " 401 5th Ave East, Tuscaloosa, Alabama 35487 "
         ]
     },
+    "University of South Alabama - Student\u2026": {
+        "locName": "University of South Alabama - Student\u2026",
+        "rating": "Peop",
+        "img_list": [],
+        "gym_info": [
+            "www.southalabama.edu",
+            " 307 N University Blvd, Mobile, Alabama 36688-0002 "
+        ]
+    },
     "YMCA Camp Cosby Alpine Tower": {
         "locName": "YMCA Camp Cosby Alpine Tower",
+        "rating": " 4.8",
         "img_list": [],
         "gym_info": [
             "www.campcosby.org",

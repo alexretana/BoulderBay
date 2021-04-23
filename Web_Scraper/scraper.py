@@ -3,6 +3,7 @@ import requests
 from config import listOfStates
 import json
 from time import sleep
+from googleSimpleSearch import getRating as getR
 
 
 
@@ -34,7 +35,8 @@ def scrapeStateFromMoutainProject(state):
         gym_data[gym_list_name] = {}
         # adding location name to gym data object
         gym_data[gym_list_name]['locName'] = gym_list_name
-        #print(("getting info on %s") %(gym_list_name))
+        gym_data[gym_list_name]['rating'] = getR(gym_list_name)
+        print(("getting info on %s") %(gym_list_name))
         gym_list = []
         gym_page = bs(page_r, 'lxml')
 
@@ -65,6 +67,7 @@ if __name__ == "__main__":
     
     # loop through each state to scrap
     for state in listOfStates:
+        print ("\n Getting goodies from ... %s \n"%(state))
         state = state.replace(" ", "-")
         scrapped_gym_data = scrapeStateFromMoutainProject(state)
         # print (scrapped_gym_data)
@@ -75,7 +78,7 @@ if __name__ == "__main__":
         print("\n Waiting 10 seconds ... \n")
         sleep(10)
 
-
-# write to json
-    with open('data.json', 'w') as outfile:
-        json.dump(gym_data, outfile,indent=4)
+        # write to json for every state
+        with open('data.json', 'w') as outfile:
+            json.dump(gym_data, outfile,indent=4)
+            print ('Stuff successfully written to file!')
