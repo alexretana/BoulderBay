@@ -7,12 +7,16 @@ import GymMarker from './gymMarker'
 
 const GMap = ({ eventData, center, zoom }) => {
     
+    // console.log(Object.keys(eventData))
     const mapBoxStyle = {
         width : "50%",
         height: "80vh",
         margin: "auto",
     }
-
+    
+    const loopLocs = () =>{
+        console.log(Object.entries(eventData))
+    }
     return (
         <div style={ mapBoxStyle } className="map">
             <GoogleMapReact
@@ -22,7 +26,8 @@ const GMap = ({ eventData, center, zoom }) => {
             >
                 <GymMarker lat ={42.3265} lng={-122.8756}/>
                 <GymMarker lat ={43.3265} lng={-122.8756}/>
-
+            
+               { loopLocs()}
             </GoogleMapReact>
             {/* {locationInfo && <LocationInfoBox info={locationInfo} />} */}
         </div>
