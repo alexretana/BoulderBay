@@ -1,22 +1,38 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import GymMarker from './gymMarker'
 
 // define constants
 
 const GMap = ({ eventData, center, zoom }) => {
-    
     // console.log(Object.keys(eventData))
+    const locMarkers = []
     const mapBoxStyle = {
         width : "50%",
         height: "80vh",
         margin: "auto",
     }
     
-    const loopLocs = () =>{
-        console.log(Object.entries(eventData))
+    
+       
+    const Markers = () =>{
+        for (const i in Object.keys(eventData)){
+            // console.log(eventData[Object.keys(eventData)[i]]['geoloc'])
+
+            const lat = eventData[Object.keys(eventData)[i]]['gInfo']['geoLoc'][0]
+            const lng = eventData[Object.keys(eventData)[i]]['gInfo']['geoLoc'][1]
+
+            locMarkers.push([lat,lng])
+        }
     }
+    Markers()
+
+    const output = locMarkers.map(ev =>{
+        console.log(ev[0],ev[1])
+        return <GymMarker lat ={ev[0]} lng={ev[1]}/>
+    })
+   
     return (
         <div style={ mapBoxStyle } className="map">
             <GoogleMapReact
@@ -24,10 +40,9 @@ const GMap = ({ eventData, center, zoom }) => {
                 defaultCenter={ center }
                 defaultZoom={ zoom }
             >
-                <GymMarker lat ={42.3265} lng={-122.8756}/>
-                <GymMarker lat ={43.3265} lng={-122.8756}/>
-            
-               { loopLocs()}
+               
+            {output}
+               
             </GoogleMapReact>
             {/* {locationInfo && <LocationInfoBox info={locationInfo} />} */}
         </div>
@@ -36,10 +51,10 @@ const GMap = ({ eventData, center, zoom }) => {
 
 GMap.defaultProps = {
     center: {
-        lat: 42.3265,
-        lng: -122.8756
+        lat: 38.54555438314078,
+        lng: -97.9853579502318
     },
-    zoom: 6
+    zoom: 4
 }
 
 export default GMap
