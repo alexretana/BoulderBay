@@ -29,11 +29,12 @@ def getGInfo(searchloc):
     res = (requests.get(url).text)
     lat = json.loads(res)['candidates'][0]['geometry']['location']['lat']
     lng = json.loads(res)['candidates'][0]['geometry']['location']['lng']
-    
+    rating = json.loads(res)['candidates'][0]["rating"]
    
     return {
         "geoLoc":[lat,lng],
+        "rating":rating
     }
     
 
-# print (getGInfo('projectROCK'))
+print (getGInfo('projectROCK'))
