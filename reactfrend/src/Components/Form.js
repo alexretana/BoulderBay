@@ -25,20 +25,14 @@ function UserForm({results}) {
     return (
         <>
             <div class="container-fluid " >
-                <br></br>
-            <form class="form-inline  mx-auto" action="/action_page.php">
-                <div class="form-group border border-warning">
-                    <label for="email">Email: </label>
-                    <input type="Email" class="ml-3 form-control" placeholder="Enter email" id="email" />
-                </div>
-                <div class="form-group m-3">
-                    <label for="pwd">City: </label>
-                    <input type="text" class="ml-3 form-control" placeholder="Enter password" id="pwd" />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <br></br>
+                    <br></br>
+           
+                    <input type="text" class="w-50 mx-auto text-center form-control" placeholder="Search Here" id="search" />
+                    <br></br>
                 <p class="m-3">Results: {results.length}</p>
                     
-            </form>
+          
             <br></br><br></br>
             <GMap eventData={data}/>
             <br></br><br></br>

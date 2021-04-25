@@ -9,9 +9,10 @@ const GMap = ({ eventData, center, zoom }) => {
     // console.log(Object.keys(eventData))
     const locMarkers = []
     const mapBoxStyle = {
-        width : "50%",
+        width : "70%",
         height: "80vh",
         margin: "auto",
+        
     }
     
     
@@ -54,7 +55,7 @@ GMap.defaultProps = {
         lat: 38.54555438314078,
         lng: -97.9853579502318
     },
-    zoom: 4
+    zoom: 5
 }
 
 export default GMap
