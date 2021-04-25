@@ -3,7 +3,7 @@ import requests
 from config import listOfStates
 import json
 from time import sleep
-from googleSimpleSearch import getRating as getR
+from googleSimpleSearch import getGInfo
 
 
 
@@ -35,8 +35,10 @@ def scrapeStateFromMoutainProject(state):
         gym_data[gym_list_name] = {}
         # adding location name to gym data object
         gym_data[gym_list_name]['locName'] = gym_list_name
-        gym_data[gym_list_name]['rating'] = getR(gym_list_name)
-        print(("getting info on %s") %(gym_list_name))
+        gym_data[gym_list_name]['gInfo'] = getGInfo(gym_list_name)
+        
+        print(("getting info on %s") %(gym_list_name.encode('utf-8')))
+        print(getGInfo(gym_list_name))
         gym_list = []
         gym_page = bs(page_r, 'lxml')
 
