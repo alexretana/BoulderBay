@@ -24,17 +24,42 @@ import requests, json
 # # print (getRating('First+Avenue+Rocks'))
 
 def getGInfo(searchloc):
-
-    url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=%s&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyAhv0uH1F1KkSjDVJwFzGBagH9tEFSDbcs"%(searchloc)
+    # sends GET req with user search var attached in google api URL
+    url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=%s&inputtype=textquery&fields=photos,place_id,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyAhv0uH1F1KkSjDVJwFzGBagH9tEFSDbcs"%(searchloc)
     res = (requests.get(url).text)
-    lat = json.loads(res)['candidates'][0]['geometry']['location']['lat']
-    lng = json.loads(res)['candidates'][0]['geometry']['location']['lng']
-    rating = json.loads(res)['candidates'][0]["rating"]
+    
+    try:
+        # access res loaded as JSON dictionary
+        lat = json.loads(res)['candidates'][0]['geometry']['location']['lat']
+        lng = json.loads(res)['candidates'][0]['geometry']['location']['lng']
+        rating = json.loads(res)['candidates'][0]["rating"]
+        place_id = str(json.loads(res)['candidates'][0]["place_id"])
+        photos = str(json.loads(res)['candidates'][0]["photos"][0]['photo_reference'])
+        name = str(json.loads(res)['candidates'][0]["name"])
+    
+        # return geo location and rating for Google infomation
+        return {
+            "correct_name":name,
+            "geoLoc":[lat,lng],
+            "place_id":place_id,
+            "rating":rating,
+            "gphotos_ref":photos
+            
+        }
+
+    except:
+        # If error occurs return NA for both geo and rating values and continue
+        print ('\n...===> Weird stuff happened with this one \n(%s)\n ..moving on <===\n'%(searchloc))
+        return {
+            "correct_name":"NA",
+            "geoLoc":"NA",
+            "rating":"NA",
+            "place_id":"NA",
+            "rating":"NA",
+            "gphotos_ref":"NA"
+        }
+        pass
    
-    return {
-        "geoLoc":[lat,lng],
-        "rating":rating
-    }
     
 
-print (getGInfo('projectROCK'))
+# print (getGInfo('projectROCK'))

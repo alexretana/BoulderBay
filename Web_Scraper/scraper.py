@@ -35,10 +35,13 @@ def scrapeStateFromMoutainProject(state):
         gym_data[gym_list_name] = {}
         # adding location name to gym data object
         gym_data[gym_list_name]['locName'] = gym_list_name
-        gym_data[gym_list_name]['gInfo'] = getGInfo(gym_list_name)
+        # adding state to gym data object
+        gym_data[gym_list_name]["state"] = state
+        # use Google api to get geoLoc and rating 
+        gym_data[gym_list_name]['googleInfo'] = getGInfo(gym_list_name)
         
         print(("getting info on %s") %(gym_list_name.encode('utf-8')))
-        print(getGInfo(gym_list_name))
+
         gym_list = []
         gym_page = bs(page_r, 'lxml')
 
@@ -56,7 +59,7 @@ def scrapeStateFromMoutainProject(state):
         for gym_info in gym_page.find_all(class_="gym-info"):
 
             gym_data[gym_list_name]['gym_info'] = [
-                a.text for a in gym_info.find_all('a')]
+            a.text for a in gym_info.find_all('a')]
 
     return gym_data
 
@@ -69,7 +72,7 @@ if __name__ == "__main__":
     
     # loop through each state to scrap
     for state in listOfStates:
-        print ("\n Getting goodies from ... %s \n"%(state))
+        print ("\n *** Getting goodies from ... %s ***\n"%(state))
         state = state.replace(" ", "-")
         scrapped_gym_data = scrapeStateFromMoutainProject(state)
         # print (scrapped_gym_data)
@@ -77,7 +80,7 @@ if __name__ == "__main__":
         gym_data.update(scrapped_gym_data)
 
         # wait ten second before next state
-        print("\n Waiting 10 seconds ... \n")
+        print("\n Waiting 10 seconds ... zzz\n")
         sleep(10)
 
         # write to json for every state
