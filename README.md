@@ -12,6 +12,7 @@ On our first "sprint" we want to have a web page which is interacted with very s
     - Show at least one picutre from the gym
     - Show the address of the gym
     - Give a Rating if applicable
+    - Have a map show all the location points
 - A static backend database that will be built using multiple data sources from online, and will be set to update weekly
 
 
