@@ -6,3 +6,4 @@ slnx.sqlite
 *.vscode
 */__pycache__/*
 *key.py
+*.pyc
