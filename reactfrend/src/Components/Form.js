@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
-import Result from './Result'
-import GMap from './GMap';
+import Mapbox from './Mapbox'
 import Infobar from './InfoBar'
 import data from '../data.json'
+import './Styles/sidebar.css'
 
 function UserForm() {
     // const [eventData, setEventData] = useState([])
@@ -23,65 +23,62 @@ function UserForm() {
     //     console.log(eventData)
     // },[])
 
-    const panel_style = {
-        // position:"fixed",
-        position: "relative",
-        float: "left",
-        "z-index": "3000",
-        height: "100vh",
-        overflow: "scroll",
-        background: "rgba(29, 53, 87, 0.9)",
-        "border-radius": 0,
-        color: "white",
-        padding: "25px"
-    }
-    let avg_center = {
-        lat: 38.54555438314078,
-        lng: -97.9853579502318
-    }
+   
+    // let avg_center = {
+    //     lat: 38.54555438314078,
+    //     lng: -97.9853579502318
+    // }
     const search_results = {}
     const [search, setSearch] = useState('')
     const [filtered_data, setfiltered_data] = useState({})
-    
-      
+    const [geoLoc, setGeoLoc] = useState([-90.9, 40])
+
     // When search value changes check for matches
     useEffect(() => {
         // return filtered out data Object to plug into map and infobox
         Object.keys(data).map(key => {
             // if state equals to search add to filtered data
-            if (search == data[key]['state']) {
+            if (search.toLowerCase() == data[key]['state'].toLowerCase()) {
                 search_results[key] = data[key]
+                setfiltered_data(search_results)
+
+                // set geo location
+                if (Object.keys(search_results).length) {
+                    console.log('search_results exist centering')
+                    const geoLat = Math.round(search_results[Object.keys(search_results)[0]].googleInfo.geoLoc[0])
+                    const geoLng = Math.round(search_results[Object.keys(search_results)[0]].googleInfo.geoLoc[1])
+
+                    setGeoLoc([geoLng, geoLat])
+                } else {
+                    console.log('search_results does not exist')
+                }
             }
             else {
                 console.log('nothing to add')
             }
         })
-        setfiltered_data(search_results)
-    }, [search])
+    }, [search]) // useEffect looks at search for changes and updates as needed
 
     return (
         <>
-            <div class="container-fluid" >
+            <div style={{background:"#3f4f78"}}class="container-fluid" >
                 <div class="row" >
-
-                    <div class="col-sm-12 col-md-3 " style={panel_style}>
-                        <input className="form-control" type="text" onChange={(e) => setSearch(e.target.value)}  placeholder="Search"></input>
+                    <div class="col-md-9 col-sm-12 " >
+                    <input className="search" type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search"></input>
+                        {/* <GMap eventData={filtered_data} geoLoc={geoLoc}/> */}
+                        <Mapbox eventData={filtered_data} geoLoc={geoLoc} />
+                    </div><br></br>
+                    <div class="list-box col-md-3 col-sm-12" >
                         {
-                        
                             Object.keys(filtered_data).map(key => {
-                                return (
-                                    <Infobar gym_data={filtered_data[key]} />
-                                )
+                                return (<Infobar gym_data={filtered_data[key]} />)
                             })
-                        
                         }
-                    </div>
-                    <div class="" >
-                        <GMap eventData={filtered_data} center={avg_center}/>
                     </div>
                 </div>
             </div>
         </>
+
     )
 }
 

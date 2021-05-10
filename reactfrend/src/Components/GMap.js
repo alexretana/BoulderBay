@@ -5,11 +5,12 @@ import GymMarker from './gymMarker'
 
 // define constants
 
-const GMap = ({eventData}) => {
+const GMap = ({eventData,geoLoc}) => {
     
-    let center = {lat: 38.54555438314078,
-        lng: -97.9853579502318}
-    const zoom = 8
+    console.log(geoLoc)
+    let center = {lat: 0,
+                  lng: 0}
+    const zoom = 4
     const mapBoxStyle = {
         width: "100%",
         height: "100vh",
@@ -31,7 +32,8 @@ const GMap = ({eventData}) => {
     const locMarkers = []
     const Markers = () => {
         for (const i in Object.keys(eventData)) {
-            // console.log(eventData[Object.keys(eventData)[i]])
+            try{
+                // console.log(eventData[Object.keys(eventData)[i]])
             const gInfo = eventData[Object.keys(eventData)[i]]['googleInfo']
 
             const lat = gInfo['geoLoc'][0]
@@ -48,6 +50,7 @@ const GMap = ({eventData}) => {
                     }
                 )
             }
+            }catch{}
         }
     }
     Markers()
@@ -57,7 +60,7 @@ const GMap = ({eventData}) => {
     return (
         <div style={mapBoxStyle} className="map">
             <GoogleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyDtggfQvcGa_TB9YlG3vWRMKAe2Q4orUr8' }}
+                bootstrapURLKeys={{ key: process.env.REACT_APP_KEY }}
                 defaultCenter={center}
                 defaultZoom={zoom}
             >
@@ -78,7 +81,7 @@ GMap.defaultProps = {
         lat: 38.54555438314078,
         lng: -97.9853579502318
     },
-    zoom: 5
+    zoom: 10
 }
 
 export default GMap
