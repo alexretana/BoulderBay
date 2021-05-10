@@ -1,0 +1,33 @@
+
+.map-container{
+    width:100%;
+    min-height: 90vh;
+}
+.marker{
+        width:100px;
+        min-height:100px;
+        /* border:2px solid red; */
+    }
+.markerText{
+    color:rgb(43, 57, 255);
+    /* background-color:#f4f1de; */
+    /* border: indianred 2px solid; */
+    border-radius: 5px;
+    text-align: center;
+    visibility: hidden;
+    padding:6px;
+    color:#9b2226
+}
+.marker:hover .markerText{ 
+    visibility: visible;
+    animation: markerHover .5s linear infinite alternate;
+}
+a{text-decoration: none!important;}
+
+ /* The animation code */
+ @keyframes markerHover {
+    to{
+        transform:scale(1.05)
+    }
+  }
+  
