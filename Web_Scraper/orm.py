@@ -46,7 +46,15 @@ class Gym(Base):
     photo = relationship("Photo", back_populates="gym")
     
     def __repr__(self):
-        return f"Gym({self.gymID!r}, {self.gymName!r}, {self.gymNameFromGoogle!r}, {self.gymAddress!r},  {self.locLatitude!r}, {self.locLongitude}, {self.ratingFromMP!r}, {self.googlePlaceID!r}, {self.lastUpdated!r})"
+        return f"Gym(gymID = {self.gymID!r}, \
+            gymName = {self.gymName!r}, \
+            gymNameFromGoogle = {self.gymNameFromGoogle!r}, \
+            gymAddress = {self.gymAddress!r},  \
+            locLatitude = {self.locLatitude!r}, \
+            locLongitude = {self.locLongitude}, \
+            ratingFromMP = {self.ratingFromMP!r}, \
+            googlePlaceID = {self.googlePlaceID!r}, \
+            lastUpdated = {self.lastUpdated!r})"
     
 class Photo(Base):
     __table__ = photos_table
@@ -54,7 +62,11 @@ class Photo(Base):
     gym = relationship("Gym", back_populates="photo")
     
     def __repr__(self):
-        return f"Photo({self.photoID!r}, {self.gymID!r}, {self.photoGoogleReference!r}, {self.photoURL!r}, {self.lastUpdated!r})"
+        return f"Photo(photoID = {self.photoID!r}, \
+            gymID = {self.gymID!r}, \
+            photoGoogleReference = {self.photoGoogleReference!r}, \
+            photoURL = {self.photoURL!r}, \
+            lastUpdated = {self.lastUpdated!r})"
 
 
 
