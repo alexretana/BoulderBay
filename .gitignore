@@ -8,3 +8,4 @@ slnx.sqlite
 *keys.py
 *.pyc
 *.log
+*data.json
