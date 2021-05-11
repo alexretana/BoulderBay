@@ -3,7 +3,6 @@ import requests
 import json
 from time import sleep
 import logging 
-from googleSimpleSearch import getGInfo
 from config import listOfStates
 
 logging.basicConfig(filename="errors.log", level=logging.WARNING, format='%(asctime)s:%(levelname)s:%(message)s')
@@ -45,7 +44,6 @@ def scrapeStateFromMoutainProject(state):
                     # adding state to gym data object
                     gym_data[cleaned_title]["state"] = state
                     # use Google api to get geoLoc and rating 
-                    gym_data[cleaned_title]['googleInfo'] = getGInfo(cleaned_title)
                     gym_list = []
                     gym_page = bs(page_r, 'lxml')
 
