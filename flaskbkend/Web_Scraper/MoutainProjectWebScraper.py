@@ -123,7 +123,7 @@ if __name__ == "__main__":
             count+=1
         except:
             pass
-
+``
         # print (scrapped_gym_data)
         # append to full dictionary list
         gym_data.update(scrapped_gym_data)
