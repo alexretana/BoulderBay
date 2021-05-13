@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, text, Table, Column, ForeignKey
-from sqlalchemy.dialects.mysql import BIGINT, VARCHAR, DECIMAL, TIMESTAMP
-from sqlalchemy.orm import declarative_base, relationship, Session
-from ORM.keys import DB_USER, DB_PASSWORD, DB_ENDPOINT
+from sqlalchemy.dialects.mysql import BIGINT, INTEGER, VARCHAR, DECIMAL, BOOLEAN, TIMESTAMP
+from sqlalchemy.orm import declarative_base, relationship, scoped_session, sessionmaker
+from keys import DB_USER, DB_PASSWORD, DB_ENDPOINT
 
 #import connection info
 user = DB_USER
@@ -15,6 +15,9 @@ dialect = f"mysql+pymysql://{user}:{pwd}@{endpoint}/boulderinggyms"
 Base = declarative_base()
 metadata = Base.metadata
 
+#Create a sessionmaker for other files to call
+Session = scoped_session(sessionmaker())
+
 #define table connected to clases
 gyms_table = Table(
     "gyms",
@@ -23,9 +26,12 @@ gyms_table = Table(
     Column('gymName', VARCHAR(80), nullable=False),
     Column('gymNameFromGoogle', VARCHAR(80)),
     Column('gymAddress', VARCHAR(100)),
+    Column('gymState', VARCHAR(14)),
+    Column('isOperational', BOOLEAN),
     Column('locLatitude', DECIMAL(8,6)),
     Column('locLongitude', DECIMAL(8,6)),
-    Column('ratingFromMP', DECIMAL(8,6)),
+    Column('ratingFromGoogle', DECIMAL(2,1)),
+    Column('numGoogleUsersRated', INTEGER(unsigned=True)),
     Column('googlePlaceID', VARCHAR(255)),
     Column('lastUpdated', TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 )
@@ -36,9 +42,16 @@ photos_table = Table(
     Column('photoID', BIGINT(unsigned=True), primary_key=True, autoincrement=True),
     Column('gymID', BIGINT(unsigned=True), ForeignKey('gyms.gymID'), nullable=False),
     Column('photoGoogleReference', VARCHAR(255)),
-    Column('photoURL', VARCHAR(160)),
+    Column('photoURL', VARCHAR(1200)),
     Column('lastUpdated', TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 )
+
+#load configs for other files
+def loadConfigs():
+    return{
+        'url' : dialect,
+        'future' : True
+    }
 
 class Gym(Base):
     __table__ = gyms_table
@@ -50,9 +63,11 @@ class Gym(Base):
             gymName = {self.gymName!r}, \
             gymNameFromGoogle = {self.gymNameFromGoogle!r}, \
             gymAddress = {self.gymAddress!r},  \
+            gymState = {self.gymState!r}, \
+            isOperational = {self.isOperational!r}, \
             locLatitude = {self.locLatitude!r}, \
             locLongitude = {self.locLongitude}, \
-            ratingFromMP = {self.ratingFromMP!r}, \
+            ratingFromGoogle = {self.ratingFromGoogle!r}, \
             googlePlaceID = {self.googlePlaceID!r}, \
             lastUpdated = {self.lastUpdated!r})"
     
@@ -72,5 +87,5 @@ class Photo(Base):
 
 #if orm is run, it builds tables for db
 if __name__== '__main__':
-    engine = create_engine(dialect, echo = True, future=True)
+    engine = create_engine(dialect, echo=True, future=True)
     metadata.create_all(engine)

@@ -1,10 +1,13 @@
 import pandas as pd
 import requests
+from sqlalchemy.engine import create_engine
 import numpy as np
 import re
 import json
 
-#import secrets from key.py
+
+#import user define classes, and keys
+from ORM.orm import Gym, Photo, Session, loadConfigs
 from ORM.keys import GKEY
 
 #safely splits up column with list
@@ -41,6 +44,7 @@ def loadGymDf(filepath: str = 'data.json'):
     del df['gym_info']
 
     #create empty columns to fill
+    df["nameFromGoogle"] = ""
     df["google_Place_ID"] = ""
     df["locLat"] = ""
     df["locLong"] = ""
@@ -71,6 +75,11 @@ if __name__ == "__main__":
     #For testing perposes, script will be run on just Delaware's 4 gyms
     df = df[df['state'] == 'Delaware'] #this line must be removed when done testing
 
+    #load configs and initialize sqlalchemy session
+    config = loadConfigs()
+    engine = create_engine()
+    Session.configure(bind=engine)
+    session = Session()
 
     for idx, row in df.iterrows():
 
@@ -102,7 +111,8 @@ if __name__ == "__main__":
         df.loc[idx,"googleRating"] = tryToGet(searchResults,"rating")
         df.at[idx,"typeList"] = tryToGet(searchResults, "types", True)
         df.loc[idx,"numUsersRated"] = tryToGet(searchResults, "user_ratings_total")
-        
+        df.loc[idx, "nameFromGoogle"] = tryToGet(searchResults, "name")
+
         #Try and update cleaner name
         try:
             df.loc[idx,"locName"] = searchResults["name"]
@@ -116,13 +126,38 @@ if __name__ == "__main__":
         except:
             df.loc[idx,"locLat"] = np.nan
             df.loc[idx,"locLong"] = np.nan
-            
-        #naual try blocks for photolist
+
+
+        #create orm-gym object and add to session
+        gymRecord = df.loc[idx]
+        recordToInsert = Gym(gymName = gymRecord['locName'],
+            gymNameFromGoogle = gymRecord['nameFromGoogle'],
+            gymAddress = gymRecord['gym_address'],
+            gymState = gymRecord['state'],
+            isOperational = gymRecord['business_status'],
+            locLatitude = gymRecord["locLat"],
+            locLonogitude = gymRecord["locLong"],
+            ratingFromGoogle = gymRecord["googleRating"],
+            numGoogleUsersRated = gymRecord["numUsersRated"],
+            googlePlaceID = gymRecord["google_Place_ID"]
+        )
+        session.add(gymRecord)
+        
+        #add img_list to DB for this gym
+        for img in gymRecord['img_list']:
+            photoRecordToInsert = Photo(photoURL = img, gym = recordToInsert)
+            session.add(photoRecordToInsert)
+
+        #naual try blocks for googlephotolist and add to DB
         try:
             photoReferenceList = []
             for photo in searchResults['photos']:
                 photoReferenceList.append(photo["photo_reference"])
+                photoRecordToInsert = Photo(photoGoogleReference = photo, gym = recordToInsert)
+                session.add(photoRecordToInsert)
             df.at[idx,"google_photoReferences"] = photoReferenceList
+            
         except:
             df.at[idx,"google_photoReferences"] = []
     
+        
