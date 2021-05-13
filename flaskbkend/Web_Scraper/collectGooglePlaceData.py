@@ -5,7 +5,7 @@ import re
 import json
 
 #import secrets from key.py
-from keys import GKEY
+from ORM.keys import GKEY
 
 #safely splits up column with list
 

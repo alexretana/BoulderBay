@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, text, Table, Column, ForeignKey
 from sqlalchemy.dialects.mysql import BIGINT, VARCHAR, DECIMAL, TIMESTAMP
 from sqlalchemy.orm import declarative_base, relationship, Session
-from key import DB_USER, DB_PASSWORD, DB_ENDPOINT
+from ORM.keys import DB_USER, DB_PASSWORD, DB_ENDPOINT
 
 #import connection info
 user = DB_USER
