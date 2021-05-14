@@ -33,6 +33,7 @@ gyms_table = Table(
     Column('ratingFromGoogle', DECIMAL(2,1)),
     Column('numGoogleUsersRated', INTEGER(unsigned=True)),
     Column('googlePlaceID', VARCHAR(255)),
+    Column('typeListStr', VARCHAR(255)),
     Column('lastUpdated', TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 )
 
@@ -69,6 +70,7 @@ class Gym(Base):
             locLongitude = {self.locLongitude}, \
             ratingFromGoogle = {self.ratingFromGoogle!r}, \
             googlePlaceID = {self.googlePlaceID!r}, \
+            typeListStr = {self.typeListStr!r}, \
             lastUpdated = {self.lastUpdated!r})"
     
 class Photo(Base):

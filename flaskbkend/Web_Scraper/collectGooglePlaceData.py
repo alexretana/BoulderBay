@@ -4,7 +4,10 @@ from sqlalchemy.engine import create_engine
 import numpy as np
 import re
 import json
+import os, sys
 
+#add outside path to import ORM modules
+sys.path.insert(0, os.path.abspath("../ORM"))
 
 #import user define classes, and keys
 from ORM.orm import Gym, Photo, Session, loadConfigs
@@ -139,7 +142,8 @@ if __name__ == "__main__":
             locLonogitude = gymRecord["locLong"],
             ratingFromGoogle = gymRecord["googleRating"],
             numGoogleUsersRated = gymRecord["numUsersRated"],
-            googlePlaceID = gymRecord["google_Place_ID"]
+            googlePlaceID = gymRecord["google_Place_ID"],
+            typeListStr = ", ".join(gymRecord["typeList"])
         )
         session.add(gymRecord)
         
