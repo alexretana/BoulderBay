@@ -6,8 +6,6 @@ import re
 import json
 import os, sys
 
-#add outside path to import ORM modules
-sys.path.insert(0, os.path.abspath("../ORM"))
 
 #import user define classes, and keys
 from ORM.orm import Gym, Photo, Session, loadConfigs
@@ -80,7 +78,7 @@ if __name__ == "__main__":
 
     #load configs and initialize sqlalchemy session
     config = loadConfigs()
-    engine = create_engine()
+    engine = create_engine(**config)
     Session.configure(bind=engine)
     session = Session()
 
@@ -139,13 +137,13 @@ if __name__ == "__main__":
             gymState = gymRecord['state'],
             isOperational = gymRecord['business_status'],
             locLatitude = gymRecord["locLat"],
-            locLonogitude = gymRecord["locLong"],
+            locLongitude = gymRecord["locLong"],
             ratingFromGoogle = gymRecord["googleRating"],
             numGoogleUsersRated = gymRecord["numUsersRated"],
             googlePlaceID = gymRecord["google_Place_ID"],
             typeListStr = ", ".join(gymRecord["typeList"])
         )
-        session.add(gymRecord)
+        session.add(recordToInsert)
         
         #add img_list to DB for this gym
         for img in gymRecord['img_list']:
@@ -157,11 +155,13 @@ if __name__ == "__main__":
             photoReferenceList = []
             for photo in searchResults['photos']:
                 photoReferenceList.append(photo["photo_reference"])
-                photoRecordToInsert = Photo(photoGoogleReference = photo, gym = recordToInsert)
+                photoRecordToInsert = Photo(photoGoogleReference = photo["photo_reference"], gym = recordToInsert)
                 session.add(photoRecordToInsert)
             df.at[idx,"google_photoReferences"] = photoReferenceList
             
         except:
             df.at[idx,"google_photoReferences"] = []
+
+        session.commit()
     
         

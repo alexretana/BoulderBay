@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, text, Table, Column, ForeignKey
 from sqlalchemy.dialects.mysql import BIGINT, INTEGER, VARCHAR, DECIMAL, BOOLEAN, TIMESTAMP
 from sqlalchemy.orm import declarative_base, relationship, scoped_session, sessionmaker
-from keys import DB_USER, DB_PASSWORD, DB_ENDPOINT
+from ORM.keys import DB_USER, DB_PASSWORD, DB_ENDPOINT
 
 #import connection info
 user = DB_USER
@@ -27,7 +27,7 @@ gyms_table = Table(
     Column('gymNameFromGoogle', VARCHAR(80)),
     Column('gymAddress', VARCHAR(100)),
     Column('gymState', VARCHAR(14)),
-    Column('isOperational', BOOLEAN),
+    Column('isOperational', VARCHAR(18)),
     Column('locLatitude', DECIMAL(8,6)),
     Column('locLongitude', DECIMAL(8,6)),
     Column('ratingFromGoogle', DECIMAL(2,1)),
