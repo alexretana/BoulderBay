@@ -74,7 +74,7 @@ if __name__ == "__main__":
             'photos'
         ]
     #For testing perposes, script will be run on just Delaware's 4 gyms
-    #df = df[df['state'] == 'Delaware'] #this line must be removed when done testing
+    #df = df[df['state'] == 'Georgia'] #this line must be removed when done testing
 
     #load configs and initialize sqlalchemy session
     config = loadConfigs()
@@ -126,9 +126,8 @@ if __name__ == "__main__":
             df.loc[idx,"locLat"] = searchResults["geometry"]["location"]["lat"]
             df.loc[idx,"locLong"] = searchResults["geometry"]["location"]["lat"]
         except:
-            df.loc[idx,"locLat"] = np.nan
-            df.loc[idx,"locLong"] = np.nan
-
+            df.loc[idx,"locLat"] = None
+            df.loc[idx,"locLong"] = None
 
         #create orm-gym object and add to session
         gymRecord = df.loc[idx]
