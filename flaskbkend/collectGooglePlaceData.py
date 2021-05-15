@@ -74,7 +74,7 @@ if __name__ == "__main__":
             'photos'
         ]
     #For testing perposes, script will be run on just Delaware's 4 gyms
-    df = df[df['state'] == 'Delaware'] #this line must be removed when done testing
+    #df = df[df['state'] == 'Delaware'] #this line must be removed when done testing
 
     #load configs and initialize sqlalchemy session
     config = loadConfigs()
