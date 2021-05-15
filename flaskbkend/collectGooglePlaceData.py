@@ -83,6 +83,12 @@ if __name__ == "__main__":
     session = Session()
 
     for idx, row in df.iterrows():
+        
+        # from pdb import set_trace
+        # set_trace()
+        checkRecord = session.query(Gym).filter(Gym.gymName == row['locName']).first()
+        if checkRecord is not None:
+            continue
 
         #assign address to variable, and create params dict
         address = row['locName'].strip('…') + " " + row['gym_address']
@@ -114,11 +120,6 @@ if __name__ == "__main__":
         df.loc[idx,"numUsersRated"] = tryToGet(searchResults, "user_ratings_total")
         df.loc[idx, "nameFromGoogle"] = tryToGet(searchResults, "name")
 
-        #Try and update cleaner name
-        try:
-            df.loc[idx,"locName"] = searchResults["name"]
-        except:
-            pass
         
         #manual try blocks for nested values
         try:
@@ -147,6 +148,11 @@ if __name__ == "__main__":
         
         #add img_list to DB for this gym
         for img in gymRecord['img_list']:
+            #check if value exists, dont add to db if do
+            checkRecord = session.query(Photo).filter(Photo.photoURL == img).first()
+            if checkRecord is not None:
+                continue
+
             photoRecordToInsert = Photo(photoURL = img, gym = recordToInsert)
             session.add(photoRecordToInsert)
 
@@ -154,6 +160,11 @@ if __name__ == "__main__":
         try:
             photoReferenceList = []
             for photo in searchResults['photos']:
+                #check if value exists, dont add to db if do
+                checkRecord = session.query(Photo).filter(Photo.photoGoogleReference == photo["photo_reference"]).first()
+                if checkRecord is not None:
+                    continue
+
                 photoReferenceList.append(photo["photo_reference"])
                 photoRecordToInsert = Photo(photoGoogleReference = photo["photo_reference"], gym = recordToInsert)
                 session.add(photoRecordToInsert)
@@ -163,5 +174,5 @@ if __name__ == "__main__":
             df.at[idx,"google_photoReferences"] = []
 
         session.commit()
-    
-        
+
+    session.close()

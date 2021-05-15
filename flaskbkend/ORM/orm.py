@@ -1,6 +1,7 @@
-from sqlalchemy import create_engine, text, Table, Column, ForeignKey
+from sqlalchemy import create_engine, text, Table, Column, ForeignKey, UniqueConstraint
 from sqlalchemy.dialects.mysql import BIGINT, INTEGER, VARCHAR, DECIMAL, BOOLEAN, TIMESTAMP
 from sqlalchemy.orm import declarative_base, relationship, scoped_session, sessionmaker
+#running this file emitts DDL, but must remove the part in brakets: [ORM.]keys
 from ORM.keys import DB_USER, DB_PASSWORD, DB_ENDPOINT
 
 #import connection info
@@ -34,7 +35,8 @@ gyms_table = Table(
     Column('numGoogleUsersRated', INTEGER(unsigned=True)),
     Column('googlePlaceID', VARCHAR(255)),
     Column('typeListStr', VARCHAR(255)),
-    Column('lastUpdated', TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
+    Column('lastUpdated', TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")),
+    UniqueConstraint('gymName')
 )
 
 photos_table = Table(
