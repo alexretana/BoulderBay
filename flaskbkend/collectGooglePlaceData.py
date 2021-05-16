@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 from sqlalchemy.engine import create_engine
 import numpy as np
+import logging
 import re
 import json
 import os, sys
@@ -10,6 +11,10 @@ import os, sys
 #import user define classes, and keys
 from ORM.orm import Gym, Photo, Session, loadConfigs
 from ORM.keys import GKEY
+
+#adds logging for sqlalchemy engine
+logging.basicConfig()
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
 #safely splits up column with list
 
