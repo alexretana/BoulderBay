@@ -9,3 +9,4 @@ slnx.sqlite
 *.pyc
 *.log
 *data.json
+node_module
