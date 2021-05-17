@@ -8,28 +8,28 @@ from ORM.orm import Gym, Photo, Session, loadConfigs
 app = Flask(__name__)
 
 #load configs and initialize sqlalchemy session
-# %%
+
 config = loadConfigs()
 engine = create_engine(**config)
 Session.configure(bind=engine)
 session = Session()
-# %%
+
 def makeJsonSerializable(jsonValue):
     if isinstance(jsonValue, datetime):
         return jsonValue.isoformat()
     elif isinstance(jsonValue, Decimal):
         return float(jsonValue)
 
-# %%
+
 
 #route to retrieve all gyms
 @app.route('/gyms/')
 def getAllGyms():
     
-    # %%
+    
     #sqlalchemy query to db
     gyms = session.query(Gym).all()
-    # %%
+    
     # creates response
     gymsResponse = []
     for gym in gyms:
