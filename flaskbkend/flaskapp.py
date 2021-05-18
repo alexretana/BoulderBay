@@ -2,8 +2,13 @@ from flask import Flask, json, request
 from sqlalchemy import create_engine
 from decimal import Decimal
 from datetime import datetime
+import numpy as np
 
 from ORM.orm import Gym, Photo, Session, loadConfigs
+
+#set Earth's radius as const (in miles)
+EARTH_RADIUS = 3958.8
+FIFTY_MILES = 50.
 
 app = Flask(__name__)
 
@@ -26,6 +31,18 @@ def indexTupleToDict(tup):
         'gymID' : tup[0],
         'gymName' : tup[1]
     }
+
+## needs fixing
+def queryFiftyMiles(locLat, locLong):
+    locHeight = FIFTY_MILES / EARTH_RADIUS
+    locLatRange = [locLat - locHeight, locLat + locHeight]
+
+    locWidth = FIFTY_MILES / (EARTH_RADIUS * np.cos(locLat * np.pi / 180)) #convert to radians for np.cos
+    locLongRange = [locLong - locWidth, locLong + locWidth]
+
+
+    gymsWithinRange = session.query(Gym).filter(Gym.locLatitude.between(*locLatRange)).filter(Gym.locLongitude.between(*locLongRange)).all()
+    return gymsWithinRange
 
 
 #route to retrieve all gyms
@@ -52,11 +69,19 @@ def getAllGyms():
 @app.route('/searchForGyms')
 def searchForGyms():
 
+    #checks for parameters and if they can be conv -> float
     args = request.args
     if set(['locLatitude', 'locLongitude']).issubset(set(args)):
         try:
             locLat = float(args.get('locLatitude'))
-            locLong = float(args.get('locLongitude'))\
+            locLong = float(args.get('locLongitude'))
+            try:
+                gyms = queryFiftyMiles(locLat, locLong)
+            except:
+                return "Failed query", 404
+            gymsResponse = []
+            for gym in gyms:
+                gymsResponse.append(gym)
 
             return app.response_class(
                 response=json.dumps({
