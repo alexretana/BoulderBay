@@ -49,6 +49,14 @@ photos_table = Table(
     Column('lastUpdated', TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 )
 
+reviews_table = Table(
+    "reviews",
+    metadata,
+    Column('reviewID', BIGINT(unsigned=True), priamary_key=True, autoincrement=True),
+    Column('gymID', BIGINT(unsigned=True), ForeignKey('gyms.gymID'), nullable=False),
+    Column('content', VARCHAR(5000), nullable=False)
+)
+
 #load configs for other files
 def loadConfigs():
     return{
@@ -60,6 +68,7 @@ class Gym(Base):
     __table__ = gyms_table
     
     photo = relationship("Photo", back_populates="gym")
+    review = relationship("Review", back_populates="gym")
     
     def __repr__(self):
         return f"Gym(gymID = {self.gymID!r}, \
@@ -87,6 +96,15 @@ class Photo(Base):
             photoURL = {self.photoURL!r}, \
             lastUpdated = {self.lastUpdated!r})"
 
+class Review(Base):
+    __table__ = reviews_table
+
+    gym = relationship("Gym", back_populates="review")
+    def __repr__(self):
+        contentLen = len(self.content)
+        return f"Review(reviewID = {self.reviewID!r}, \
+            gymID = {self.gymID!r}, \
+            content has {contentLen} characters)"
 
 
 #if orm is run, it builds tables for db
