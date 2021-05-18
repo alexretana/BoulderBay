@@ -129,7 +129,7 @@ if __name__ == "__main__":
         #manual try blocks for nested values
         try:
             df.loc[idx,"locLat"] = searchResults["geometry"]["location"]["lat"]
-            df.loc[idx,"locLong"] = searchResults["geometry"]["location"]["lat"]
+            df.loc[idx,"locLong"] = searchResults["geometry"]["location"]["lng"]
         except:
             df.loc[idx,"locLat"] = None
             df.loc[idx,"locLong"] = None
