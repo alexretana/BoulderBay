@@ -50,3 +50,6 @@ def getAllGyms():
 @app.route('/gyms/<int:gymID>')
 def getDboi():
     return 'dboi'
+
+if __name__ == "__main__":
+    app.run(debug=True)
