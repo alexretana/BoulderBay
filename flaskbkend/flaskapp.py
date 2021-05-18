@@ -8,7 +8,7 @@ from ORM.orm import Gym, Photo, Session, loadConfigs
 
 #set Earth's radius as const (in miles)
 EARTH_RADIUS = 3958.8
-FIFTY_MILES = 50.
+FIFTY_MILES = 50.0
 
 app = Flask(__name__)
 
@@ -34,10 +34,10 @@ def indexTupleToDict(tup):
 
 ## needs fixing
 def queryFiftyMiles(locLat, locLong):
-    locHeight = FIFTY_MILES / EARTH_RADIUS
+    locHeight = FIFTY_MILES / EARTH_RADIUS * 180.0 / np.pi #conv rad -> deg
     locLatRange = [locLat - locHeight, locLat + locHeight]
 
-    locWidth = FIFTY_MILES / (EARTH_RADIUS * np.cos(locLat * np.pi / 180)) #convert to radians for np.cos
+    locWidth = FIFTY_MILES / (EARTH_RADIUS * np.cos(locLat * np.pi / 180.0)) #conv cos(deg-> rad) rad -> deg
     locLongRange = [locLong - locWidth, locLong + locWidth]
 
 
