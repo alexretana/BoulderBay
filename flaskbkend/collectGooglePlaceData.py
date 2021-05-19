@@ -177,7 +177,7 @@ if __name__ == "__main__":
         except:
             df.at[idx,"google_photoReferences"] = []
 
-
+        # try and fetch review data using GooglePlaceID, push to db
         try:
             
             googlePlaceID = df.loc[idx, 'google_Place_ID']
@@ -206,6 +206,7 @@ if __name__ == "__main__":
         except:
             pass
 
+        #commit gym and all items attached to that gym
         session.commit()
 
     session.close()
