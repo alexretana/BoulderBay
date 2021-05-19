@@ -52,9 +52,14 @@ photos_table = Table(
 reviews_table = Table(
     "reviews",
     metadata,
-    Column('reviewID', BIGINT(unsigned=True), priamary_key=True, autoincrement=True),
+    Column('reviewID', BIGINT(unsigned=True), primary_key=True, autoincrement=True),
     Column('gymID', BIGINT(unsigned=True), ForeignKey('gyms.gymID'), nullable=False),
-    Column('content', VARCHAR(5000), nullable=False)
+    Column('author', VARCHAR(128)),
+    Column('content', VARCHAR(5000), nullable=False),
+    Column('rating', DECIMAL(2,1)),
+    Column('timePosted', TIMESTAMP),
+    Column('source', VARCHAR(24), nullable=False),
+    Column('lastUpdated', TIMESTAMP, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 )
 
 #load configs for other files
@@ -104,6 +109,10 @@ class Review(Base):
         contentLen = len(self.content)
         return f"Review(reviewID = {self.reviewID!r}, \
             gymID = {self.gymID!r}, \
+            author = {self.author!r}, \
+            rating = {self.rating!r}, \
+            time posted = {self.timePosted!r}, \
+            source = {self.source!r}, \
             content has {contentLen} characters)"
 
 
@@ -111,3 +120,4 @@ class Review(Base):
 if __name__== '__main__':
     engine = create_engine(dialect, echo=True, future=True)
     metadata.create_all(engine)
+
