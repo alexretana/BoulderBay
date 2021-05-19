@@ -9,7 +9,7 @@ import os, sys
 
 
 #import user define classes, and keys
-from ORM.orm import Gym, Photo, Session, loadConfigs
+from ORM.orm import Gym, Photo, Review, Session, loadConfigs
 from ORM.keys import GKEY
 
 #adds logging for sqlalchemy engine
@@ -176,6 +176,35 @@ if __name__ == "__main__":
             
         except:
             df.at[idx,"google_photoReferences"] = []
+
+
+        try:
+            
+            googlePlaceID = df.loc[idx, 'google_Place_ID']
+            detailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json?'
+            detailParams = {
+                "key": GKEY,
+                "place_id": 'ChIJC9AmVz-FaIcRuFWMJJOC120',
+                'fields':["reviews"]
+            }
+            reviewResults = requests.get(detailsUrl, params=detailParams).json()
+            for review in reviewResults['result']['reviews']:
+                author = tryToGet(review,'author_name')
+                rating = tryToGet(review, 'rating')
+                content = tryToGet(review,'text')
+                time_posted = tryToGet(review,'time')
+            reviewToInsert = Review(
+                author=author,
+                content=content,
+                rating=rating,
+                timePosted=time_posted,
+                source='Google',
+                gym=recordToInsert
+            )
+            session.add(reviewToInsert)
+            
+        except:
+            pass
 
         session.commit()
 
