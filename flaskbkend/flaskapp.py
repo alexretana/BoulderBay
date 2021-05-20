@@ -1,5 +1,5 @@
 from flask import Flask, json, request
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, and_
 from decimal import Decimal
 from datetime import datetime
 import numpy as np
@@ -32,16 +32,22 @@ def indexTupleToDict(tup):
         'gymName' : tup[1]
     }
 
-## needs fixing
 def queryFiftyMiles(locLat, locLong):
     locHeight = FIFTY_MILES / EARTH_RADIUS * 180.0 / np.pi #conv rad -> deg
     locLatRange = [locLat - locHeight, locLat + locHeight]
 
-    locWidth = FIFTY_MILES / (EARTH_RADIUS * np.cos(locLat * np.pi / 180.0)) #conv cos(deg-> rad) rad -> deg
+    locWidth = FIFTY_MILES / (EARTH_RADIUS * np.cos(locLat * np.pi / 180.0)) * 180.0 / np.pi #conv cos(deg-> rad) rad -> deg
     locLongRange = [locLong - locWidth, locLong + locWidth]
 
-
-    gymsWithinRange = session.query(Gym).filter(Gym.locLatitude.between(*locLatRange)).filter(Gym.locLongitude.between(*locLongRange)).all()
+    whereStmt1 = and_(
+        Gym.locLatitude > locLatRange[0],
+        Gym.locLatitude < locLatRange[1]
+    )
+    whereStmt2 = and_(
+        Gym.locLongitude > locLongRange[0], 
+        Gym.locLongitude < locLongRange[1]
+    )
+    gymsWithinRange = session.query(Gym).filter(whereStmt1).filter(whereStmt2).all()
     return gymsWithinRange
 
 
@@ -71,24 +77,26 @@ def searchForGyms():
 
     #checks for parameters and if they can be conv -> float
     args = request.args
-    if set(['locLatitude', 'locLongitude']).issubset(set(args)):
+    if set(['lat', 'lng']).issubset(set(args)):
         try:
-            locLat = float(args.get('locLatitude'))
-            locLong = float(args.get('locLongitude'))
+            locLat = float(args.get('lat'))
+            locLong = float(args.get('lng'))
+
+            #attempts to query gyms within range
             try:
                 gyms = queryFiftyMiles(locLat, locLong)
             except:
                 return "Failed query", 404
+
+            #creates response    
             gymsResponse = []
             for gym in gyms:
-                gymsResponse.append(gym)
+                gym.__dict__.pop("_sa_instance_state")
+                gymsResponse.append(gym.__dict__)
 
             return app.response_class(
-                response=json.dumps({
-                        'latCoord': locLat,
-                        'longCoord' : locLong
-                    }, 
-                    default=makeJsonSerializable),
+                response=json.dumps(gymsResponse, 
+                default=makeJsonSerializable),
                 status=200,
                 mimetype='application/json'
             )

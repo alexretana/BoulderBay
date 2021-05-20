@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 from sqlalchemy.engine import create_engine
 import numpy as np
+from datetime import datetime
 import logging
 import re
 import json
@@ -9,7 +10,7 @@ import os, sys
 
 
 #import user define classes, and keys
-from ORM.orm import Gym, Photo, Session, loadConfigs
+from ORM.orm import Gym, Photo, Review, Session, loadConfigs
 from ORM.keys import GKEY
 
 #adds logging for sqlalchemy engine
@@ -79,7 +80,7 @@ if __name__ == "__main__":
             'photos'
         ]
     #For testing perposes, script will be run on just Delaware's 4 gyms
-    #df = df[df['state'] == 'Georgia'] #this line must be removed when done testing
+    #df = df[df['state'] == 'Delaware'] #this line must be removed when done testing
 
     #load configs and initialize sqlalchemy session
     config = loadConfigs()
@@ -89,8 +90,7 @@ if __name__ == "__main__":
 
     for idx, row in df.iterrows():
         
-        # from pdb import set_trace
-        # set_trace()
+
         checkRecord = session.query(Gym).filter(Gym.gymName == row['locName']).first()
         if checkRecord is not None:
             continue
@@ -177,6 +177,36 @@ if __name__ == "__main__":
         except:
             df.at[idx,"google_photoReferences"] = []
 
+        # try and fetch review data using GooglePlaceID, push to db
+        try:
+            
+            googlePlaceID = df.loc[idx, 'google_Place_ID']
+            detailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json?'
+            detailParams = {
+                "key": GKEY,
+                "place_id": df.loc[idx,"google_Place_ID"],
+                'fields':["reviews"]
+            }
+            reviewResults = requests.get(detailsUrl, params=detailParams).json()
+            for review in reviewResults['result']['reviews']:
+                author = tryToGet(review,'author_name')
+                rating = tryToGet(review, 'rating')
+                content = tryToGet(review,'text')
+                time_posted = tryToGet(review,'time')
+                reviewToInsert = Review(
+                    author=author,
+                    content=content,
+                    rating=rating,
+                    timePosted=datetime.fromtimestamp(time_posted),
+                    source='Google',
+                    gym=recordToInsert
+                )
+                session.add(reviewToInsert)
+            
+        except:
+            pass
+
+        #commit gym and all items attached to that gym
         session.commit()
 
     session.close()
